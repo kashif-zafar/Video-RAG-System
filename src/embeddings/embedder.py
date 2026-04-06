@@ -4,8 +4,7 @@ import json
 import pandas as pd
 import joblib
 
-# from src.embeddings.retriever import create_embeddings  # or utils later
-# (If circular import, we’ll move it to utils next step)
+
 
 
 TRANSCRIPTS_DIR = "data/transcripts"
@@ -55,7 +54,7 @@ def build_embeddings():
             "number": chunk["number"],
             "start": chunk["start"],
             "end": chunk["end"],
-            "text": chunk["text"]strip(),
+            "text": chunk["text"].strip(),
             "embedding": embeddings[i]
         })
 
