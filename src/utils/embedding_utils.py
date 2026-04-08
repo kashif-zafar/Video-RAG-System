@@ -1,7 +1,6 @@
 import requests
 
-EMBED_API_URL = "http://localhost:11434/api/embed"
-EMBED_MODEL = "bge-m3"
+from src.utils.config import EMBED_API_URL,EMBED_MODEL
 
 
 def create_embeddings(text_list, batch_size=32):

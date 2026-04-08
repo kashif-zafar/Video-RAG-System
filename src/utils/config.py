@@ -4,6 +4,11 @@
 MODEL_NAME = "sentence-transformers/all-MiniLM-L6-v2"
 EMBEDDING_DIMENSION = 384
 
+#Embedding Model and URL
+EMBED_API_URL = "http://localhost:11434/api/embed"
+EMBED_MODEL = "bge-m3"
+
+
 # File paths
 DATA_DIR = "data/"
 VIDEO_DIR = "data/videos/"

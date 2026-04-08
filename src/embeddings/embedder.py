@@ -3,14 +3,12 @@ import os
 import json
 import pandas as pd
 import joblib
+from src.utils.config import TRANSCRIPT_DIR, EMBEDDINGS_FILE
+# then use TRANSCRIPT_DIR and EMBEDDINGS_FILE instead of the hardcoded strings
 
 
 
 
-TRANSCRIPTS_DIR = "data/transcripts"
-OUTPUT_PATH = "data/embeddings.joblib"
-EMBED_API_URL = "http://localhost:11434/api/embed"
-EMBED_MODEL = "bge-m3"
 from src.utils.embedding_utils import create_embeddings
 
 
@@ -21,11 +19,11 @@ def load_transcripts():
     """
     all_chunks = []
 
-    for file in os.listdir(TRANSCRIPTS_DIR):
+    for file in os.listdir(TRANSCRIPT_DIR):
         if not file.endswith(".json"):
             continue
 
-        with open(os.path.join(TRANSCRIPTS_DIR, file), "r") as f:
+        with open(os.path.join(TRANSCRIPT_DIR, file), "r") as f:
             content = json.load(f)
 
         all_chunks.extend(content["chunks"])
@@ -60,7 +58,7 @@ def build_embeddings():
 
     df = pd.DataFrame(records)
 
-    os.makedirs(os.path.dirname(OUTPUT_PATH), exist_ok=True)
-    joblib.dump(df, OUTPUT_PATH)
+    os.makedirs(os.path.dirname(EMBEDDINGS_FILE), exist_ok=True)
+    joblib.dump(df, EMBEDDINGS_FILE)
 
-    print(f"Saved embeddings to {OUTPUT_PATH}")
+    print(f"Saved embeddings to {EMBEDDINGS_FILE}")

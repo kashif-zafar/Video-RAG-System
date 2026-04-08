@@ -3,9 +3,9 @@ import numpy as np
 import joblib
 from sklearn.metrics.pairwise import cosine_similarity
 from src.utils.embedding_utils import create_embeddings
+from src.utils.config import EMBEDDINGS_FILE
 
 
-EMBEDDINGS_PATH = "data/embeddings.joblib"
 
 
 
@@ -16,7 +16,7 @@ def load_embeddings():
     Load precomputed embeddings dataframe
     """
     try:
-        df = joblib.load(EMBEDDINGS_PATH)
+        df = joblib.load(EMBEDDINGS_FILE)
         return df
     except Exception as e:
         raise Exception(f"Failed to load embeddings: {e}")
